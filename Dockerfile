@@ -1,4 +1,5 @@
-FROM golang:1.16 as build
+ARG builder_base=golang:1.16
+FROM ${builder_base} as build
 WORKDIR /go/src/app
 COPY . .
 RUN make
