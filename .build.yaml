@@ -27,7 +27,7 @@ spec:
           value:
             - 192.168.137.20:32222/simple-app/simple-app:$(build.git.branch.nameAsTag)-$(build.git.lastCommit.shortID)
         - name: extra-args
-          value: --opt build_args:BASE=192.168.137.20:32222/library/golang:1.16
+          value: --opt build_arg:BASE=192.168.137.20:32222/library/golang:1.16
   git:
     options:
       depth: 1
