@@ -28,6 +28,34 @@ spec:
             - 192.168.137.20:32222/simple-app/simple-app:$(build.git.branch.nameAsTag)-$(build.git.lastCommit.shortID)
         - name: extra-args
           value: --opt build_arg:BASE=192.168.137.20:32222/library/golang:1.16
+    - name: deploy-test
+      timeout: 30m
+      retries: 0
+      taskRef:
+        resolver: katanomi.hub
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: run-script
+      workspaces:
+        - name: source
+          workspace: source
+      runAfter:
+        - build
+      when:
+        - input: $(build.git.branch.name)
+          operator: in
+          values:
+            - master
+      params:
+        - name: command
+          value: |-
+            cd config/overlays/local
+            kustomize edit set image simple-app=$(tasks.build.results.ociContainerImageBuild-url[0])
+            cd -
+
+            kustomize build config/overlays/
   git:
     options:
       depth: 1
