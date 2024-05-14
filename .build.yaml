@@ -1,0 +1,45 @@
+apiVersion: builds.katanomi.dev/v1alpha1
+kind: Build
+spec:
+  workspaces:
+    - description: |
+        This workspace is shared among all the pipeline tasks to read/write common resources
+      name: source
+  tasks:
+    - name: build
+      timeout: 30m
+      retries: 0
+      taskRef:
+        resolver: katanomi.hub
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: build-image-buildkit
+      workspaces:
+        - name: source
+          workspace: source
+        - name: cache
+        - name: config
+      when: []
+      params:
+        - name: container-images
+          value:
+            - 192.168.137.20:32222/simple-app/simple-app:$(build.git.branch.nameAsTag)-$(build.git.lastCommit.shortID)
+        - name: extra-args
+          value: --opt build_args:BASE=192.168.137.20:32222/library/golang:1.16
+  git:
+    options:
+      depth: 1
+      timeout: 10m
+      retries: 0
+      resources:
+        limits:
+          cpu: 200m
+          memory: 200Mi
+        requests:
+          cpu: 200m
+          memory: 200Mi
+  runTemplate:
+    spec:
+      taskRunSpecs: []
