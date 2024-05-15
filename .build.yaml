@@ -51,13 +51,12 @@ spec:
       params:
         - name: command
           value: |-
-            echo "$(tasks.build.results.ociContainerImageBuild-url[0])"
             cd config/overlays/local
             kustomize edit set image simple-app=192.168.137.20:32222/simple-app/simple-app:$(build.git.branch.nameAsTag)-$(build.git.lastCommit.shortID)
             # kustomize edit set image simple-app=
             cd -
 
-            kustomize build config/overlays/
+            kustomize build config/overlays/local
   git:
     options:
       depth: 1
