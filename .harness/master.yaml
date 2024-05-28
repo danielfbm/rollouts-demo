@@ -1,0 +1,14 @@
+inputSet:
+  pipeline:
+    identifier: simpleapp
+    properties:
+      ci:
+        codebase:
+          build:
+            spec:
+              branch: master
+            type: branch
+  name: master
+  identifier: master
+  orgIdentifier: default
+  projectIdentifier: default_project
