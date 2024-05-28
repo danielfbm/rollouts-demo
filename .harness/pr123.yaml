@@ -1,0 +1,14 @@
+inputSet:
+  pipeline:
+    identifier: simpleapp
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: "123"
+  name: pr-123
+  identifier: pr123
+  orgIdentifier: default
+  projectIdentifier: default_project
