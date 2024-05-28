@@ -33,5 +33,3 @@ pipeline:
                   spec:
                     shell: Bash
                     command: echo "hello world! <+input>"
-  delegateSelectors:
-    - helm-delegate
