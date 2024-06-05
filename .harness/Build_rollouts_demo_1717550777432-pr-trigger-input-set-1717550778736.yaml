@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_rollouts_demo_1717550777432-pr-trigger-input-set
+  identifier: Build_rollouts_demo_1717550777432prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_rollouts_demo_1717550777432
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
