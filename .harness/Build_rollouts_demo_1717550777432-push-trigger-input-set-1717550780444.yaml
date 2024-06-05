@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_rollouts_demo_1717550777432-push-trigger-input-set
+  identifier: Build_rollouts_demo_1717550777432pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_rollouts_demo_1717550777432
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
