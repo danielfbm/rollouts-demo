@@ -56,6 +56,12 @@ pipeline:
                       - latest
                   timeout: ""
                   type: BuildAndPushDockerRegistry
+              - step:
+                  type: Run
+                  name: Run_4
+                  identifier: Run_4
+                  spec:
+                    shell: Sh
           platform:
             os: MacOS
             arch: Amd64
